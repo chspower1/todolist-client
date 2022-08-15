@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useForm } from "react-hook-form";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { categoryState, IToDo, toDosState } from "../atoms";
@@ -13,9 +14,15 @@ export default function CreateToDoList() {
     const category = useRecoilValue(categoryState);
     const { register, handleSubmit } = useForm<IForm>();
 
-    const onvalid = (data: IForm) => {
-        const { date, text } = data;
-        setToDos((prev) => [{ id: Date.now(), text, date: String(data.date), category }, ...prev]);
+    const onvalid = async (data: IForm) => {
+        const { text } = data;
+        const newData: IToDo = { id: Date.now(), text, date: String(data.date), category };
+        setToDos((prev) => [...prev, newData]);
+
+        await axios
+            .postForm("/", JSON.stringify(newData))
+            .then((res) => console.log("완료", newData, res)) //
+            .catch((err) => console.log("실패", err));
     };
     return (
         <>
