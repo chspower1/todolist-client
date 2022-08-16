@@ -1,13 +1,16 @@
-React로 To-Do-List 만들기 복습!
+To-Do-List!
+
+My first project to make using what I have learned so far!
 
 Feature
-1.Save to-do-list in Localstorage
+1.Save to-do-list in DB
 2.Show todolist devided to category
 3.Dark mode
 
 To learn these
-1.Recoil
-2.Styled-components, theme
-3.React-hook-from
-4.TypeScript
-5.React-router-dom
+-Recoil
+-Styled-components, theme
+-React-hook-from
+-TypeScript
+-Router
+-React-Query

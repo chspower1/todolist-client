@@ -8,21 +8,18 @@ interface IForm {
     text: string;
     date: Date;
 }
-
 export default function CreateToDoList() {
+    const SERVER_URL = process.env.REACT_APP_SERVER_URL;
     const [toDos, setToDos] = useRecoilState(toDosState);
     const category = useRecoilValue(categoryState);
     const { register, handleSubmit } = useForm<IForm>();
 
     const onvalid = async (data: IForm) => {
         const { text } = data;
-        const newData: IToDo = { id: Date.now(), text, date: String(data.date), category };
+        const newData: IToDo = { id: String(Date.now()), text, date: String(data.date), category };
         setToDos((prev) => [...prev, newData]);
-
-        await axios
-            .postForm("/", JSON.stringify(newData))
-            .then((res) => console.log("완료", newData, res)) //
-            .catch((err) => console.log("실패", err));
+        console.log(SERVER_URL);
+        await axios.post(`${SERVER_URL}/post`, newData);
     };
     return (
         <>

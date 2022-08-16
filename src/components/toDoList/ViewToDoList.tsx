@@ -1,17 +1,32 @@
 import { IToDo, toDosState } from "./../atoms";
-import { useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { useEffect, useState } from "react";
+import { fetchToDos } from "../../api/api";
+import { useQuery } from "@tanstack/react-query";
+import { useForm } from "react-hook-form";
+import ToDo from "./ToDo";
+
 export default function ViewToDoList() {
-    const toDos = useRecoilValue(toDosState);
+    const [toDos, setToDos] = useRecoilState(toDosState);
+    const { handleSubmit } = useForm();
+    const {
+        isLoading,
+        data: DBtoDos,
+        isFetching,
+    } = useQuery(["toDos"], fetchToDos, {
+        onSuccess() {
+            setToDos(DBtoDos!);
+            console.log("불러오기", toDos);
+        },
+    });
+
     return (
         <>
-            {toDos.map((toDo) => (
-                <ul key={toDo.id}>
-                    <li>
-                        <div>{toDo.text}</div>
-                        <div>{toDo.date}</div>
-                    </li>
-                </ul>
-            ))}
+            {isLoading ? (
+                <div>로딩중입니다.</div>
+            ) : (
+                DBtoDos?.map((toDo) => <ToDo key={toDo.id} {...toDo} />)
+            )}
         </>
     );
 }
