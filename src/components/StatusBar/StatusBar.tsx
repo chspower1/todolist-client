@@ -6,6 +6,7 @@ const Container = styled.div`
     display: flex;
     align-items: center;
     position: relative;
+    width: 85vw;
     height: 8vh;
     margin-left: 15vw;
     background-color: white;
@@ -27,7 +28,7 @@ const SearchForm = styled.form`
 `;
 const SearchInput = styled.input.attrs({ placeholder: "할 일을 찾아주세요!" })`
     width: 25rem;
-    height: 2rem;
+    height: 2.5rem;
     border-radius: 20px;
     border: solid 3px ${(props) => props.theme.accentColor};
     outline: none;

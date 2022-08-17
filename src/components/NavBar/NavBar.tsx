@@ -22,7 +22,8 @@ const NavContainer = styled.nav`
     width: 15vw;
     height: 100vh;
     background-color: ${(props) => props.theme.btnColor};
-    color: ${(props) => props.theme.btnTextColor}; ;
+    color: ${(props) => props.theme.btnTextColor};
+    z-index: 3;
 `;
 const FoldIcon = styled(ArrowIosBackOutline)``;
 const ProfileContainer = styled.div`

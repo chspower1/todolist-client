@@ -5,10 +5,10 @@ export const Container = styled.section`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    max-width: 100vw;
-    min-width: 85vw;
+    width: 85vw;
     height: 93vh;
-    margin-left: 15vh;
+    margin-left: 15vw;
+    color: ${(props) => props.theme.textColor};
     background-color: ${(props) => props.theme.bgColor};
 `;
 export default function Home() {

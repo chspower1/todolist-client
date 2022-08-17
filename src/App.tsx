@@ -13,6 +13,11 @@ const GlobalStyle = createGlobalStyle`
     }
     body{
         font-family: "Sebang";
+        overflow-x:hidden;
+    }
+    *{
+        font-family: "Sebang";
+        box-sizing: border-box;
     }
 `;
 function App() {
