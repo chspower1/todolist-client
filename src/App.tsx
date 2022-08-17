@@ -1,10 +1,28 @@
-import ToDoList from "./components/toDoList/ToDoList";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import Router from "./Router";
+
+import { createGlobalStyle, ThemeProvider } from "styled-components";
+import reset from "styled-reset";
+import { lightTheme } from "./theme";
+
+const GlobalStyle = createGlobalStyle`
+    ${reset}
+    a{
+        color:white;
+        text-decoration:none;
+    }
+    body{
+        font-family: "Sebang";
+    }
+`;
 function App() {
     return (
         <>
-            <ToDoList />
-            <ReactQueryDevtools />
+            <ThemeProvider theme={lightTheme}>
+                <GlobalStyle />
+                <Router />
+                <ReactQueryDevtools />
+            </ThemeProvider>
         </>
     );
 }

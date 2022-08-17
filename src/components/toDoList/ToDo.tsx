@@ -1,15 +1,17 @@
-import { useForm } from "react-hook-form";
-import { Categories, IToDo, toDosState } from "./../atoms";
+import { Categories, IToDo } from "./../atoms";
 import { deleteToDo, updateCategory } from "src/api/api";
 import { useState } from "react";
-import { useRecoilState } from "recoil";
+
 export default function ToDo(toDoProps: IToDo) {
     const [onDel, setOnDel] = useState(false);
     const [toDo, setToDo] = useState(toDoProps);
+
+    //현재 ToDo 지우기
     const onClickDel = () => {
         deleteToDo(toDo.id);
         setOnDel(true);
     };
+    // 카테고리 바꾸기
     const onClickCategory = (newCategory: Categories) => {
         updateCategory(toDo.id, newCategory);
         setToDo((prev) => ({
@@ -19,9 +21,7 @@ export default function ToDo(toDoProps: IToDo) {
     };
     return (
         <>
-            {onDel ? (
-                <div></div>
-            ) : (
+            {onDel ? null : (
                 <ul key={toDo.id}>
                     <li>
                         <div>

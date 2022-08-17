@@ -9,6 +9,7 @@ interface IForm {
     text: string;
     date: Date;
 }
+
 export default function CreateToDoList() {
     const [toDos, setToDos] = useRecoilState(toDosState);
     const { register, handleSubmit } = useForm<IForm>();
