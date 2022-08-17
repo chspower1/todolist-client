@@ -1,25 +1,29 @@
 import axios from "axios";
+import mongoose from "mongoose";
 import { useForm } from "react-hook-form";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { categoryState, IToDo, toDosState } from "../atoms";
-import ViewToDoList from "./ViewToDoList";
+import { createToDo } from "src/api/api";
+import { Categories, categoryState, IToDo, toDosState } from "../atoms";
 
 interface IForm {
     text: string;
     date: Date;
 }
 export default function CreateToDoList() {
-    const SERVER_URL = process.env.REACT_APP_SERVER_URL;
     const [toDos, setToDos] = useRecoilState(toDosState);
-    const category = useRecoilValue(categoryState);
     const { register, handleSubmit } = useForm<IForm>();
 
     const onvalid = async (data: IForm) => {
-        const { text } = data;
-        const newData: IToDo = { id: String(Date.now()), text, date: String(data.date), category };
-        setToDos((prev) => [...prev, newData]);
-        console.log(SERVER_URL);
-        await axios.post(`${SERVER_URL}/post`, newData);
+        const { text, date } = data;
+        const newToDo: IToDo = {
+            id: String(Date.now()),
+            text,
+            date: String(date),
+            category: Categories.TO_DO,
+        };
+        toDos ? setToDos((prev) => [...prev, newToDo]) : setToDos([newToDo]);
+        console.log(newToDo);
+        createToDo(newToDo);
     };
     return (
         <>

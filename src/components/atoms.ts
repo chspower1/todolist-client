@@ -1,7 +1,6 @@
 import { atom } from "recoil";
 
 export interface IToDo {
-    _id?: string;
     id: string;
     text: string;
     date: string;
