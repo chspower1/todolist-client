@@ -18,6 +18,7 @@ const GlobalStyle = createGlobalStyle`
     *{
         font-family: "Sebang";
         box-sizing: border-box;
+        
     }
 `;
 function App() {

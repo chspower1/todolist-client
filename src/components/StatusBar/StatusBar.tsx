@@ -26,7 +26,7 @@ const SearchForm = styled.form`
     justify-content: center;
     align-items: center;
 `;
-const SearchInput = styled.input.attrs({ placeholder: "할 일을 찾아주세요!" })`
+export const SearchInput = styled.input.attrs({ placeholder: "할 일을 찾아주세요!" })`
     width: 25rem;
     height: 2.5rem;
     border-radius: 20px;

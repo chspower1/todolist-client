@@ -6,7 +6,8 @@ import ToDo, { ChangeItem, DateItem, DeleteItem, Item, ToDoItem, ToDoListTag } f
 import styled from "styled-components";
 
 const ListName = styled(ToDoListTag)`
-    border-bottom: solid 2px #e7e7e7;
+    background-color: #f7f7f7;
+    box-shadow: 0px 5px 10px 1px #ebebeb;
 `;
 
 export default function ViewToDoList() {
